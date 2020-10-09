@@ -1,1 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:crypto;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=FALSE;
+    data: classpath:/sql/*.sql
+    sql-script-encoding: UTF-8
+  jpa:
+    hibernate.ddl-auto: create
+    generate-ddl: true
+    properties.hibernate.globally_quoted_identifiers: true
+    show-sql: true
 
+crypto:
+  security:
+    excluded-paths:
+      - /h2-console/**
