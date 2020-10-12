@@ -1,5 +1,6 @@
 package com.fint.crypto.domain
 
+import com.fasterxml.jackson.annotation.JsonValue
 import com.fint.crypto.domain.Order.Status.CREATED
 import com.fint.crypto.domain.Order.Status.OrderStatusConverter
 import com.fint.crypto.domain.Order.Type.OrderTypeConverter
@@ -76,6 +77,7 @@ data class Order(
 
         BUY, SELL;
 
+        @JsonValue
         override fun toString() = name.toLowerCase()
 
         class OrderTypeConverter : AttributeConverter<Type, String> {
@@ -89,6 +91,7 @@ data class Order(
 
         CREATED, COMPLETED, CANCELED;
 
+        @JsonValue
         override fun toString() = name.toLowerCase()
 
         class OrderStatusConverter : AttributeConverter<Status, String> {
@@ -99,8 +102,8 @@ data class Order(
     }
 
     companion object {
-        private const val PRECISION = 20
-        private const val SCALE = 10
+        const val PRECISION = 20
+        const val SCALE = 10
     }
 
 }
