@@ -9,8 +9,18 @@ spring:
     generate-ddl: true
     properties.hibernate.globally_quoted_identifiers: true
     show-sql: true
+  # Jackson (JSON Rendering)
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+    serialization:
+      write-dates-as-timestamps: false
+      indent-output: false
+    deserialization.fail-on-unknown-properties: true
+    property-naming-strategy: SNAKE_CASE
+    mapper.accept-case-insensitive-enums: true
 
 crypto:
   security:
     excluded-paths:
       - /h2-console/**
+      - /orders/**
