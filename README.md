@@ -1,5 +1,59 @@
 # Crypto-API
 
+## How to run
+All the necessary scripts are located under the `scripts` directory.
+
+### Prerequisites
+
+- JDK 11
+- Docker (only required to run it with Docker)
+
+### Manually
+Simply run `run_local.sh`. By default, Tomcat will run on the port 8080.
+
+### Docker
+Run `build_deploy_docker.sh` this will automatically build and run the image on a container and will print the port 
+number. This requires that you first run `generate_jar.sh` This script needs to be run from the project root.
+
+### Generating Jar
+Run `generate_jar.sh`. 
+
+## Sample requests
+
+### Place order
+
+```
+curl -XPOST 'localhost:8080/orders/' \
+-H 'Content-Type: application/json' \
+-d '{
+    "user_id": 1,
+    "coin": {
+        "currency_id": 1,
+        "quantity": "2.0000"
+    },
+    "price_per_coin": 70,
+    "type": "sell"
+}' -v
+```
+
+This request has the -v option so it's easier to see the Location header with the URI of the placed order (including its id)
+
+### Cancel order
+```shell
+curl -XDELETE 'localhost:8080/orders/b4ddfca4-5636-3bdd-8ed9-c769e27a9941'
+```
+
+### Get orders for live dashboard
+```
+curl 'localhost:8080/orders/'
+```
+
+### List available currencies
+```
+curl 'localhost:8080/currencies/'
+```
+
+
 ## Points left out of design / assumptions
 
 ### Balance validation
@@ -27,6 +81,11 @@ replaced by a custom layer. This would also allow to improve integration tests a
 
 The order placement doesn't return a payload upon completion. This could be easily changed, I simply didn't add it because I
 couldn't find any use for it with the current scope. 
+
+### Order lifecycle validations
+
+Through an `EntityListener` the order transitions between status could be validated in a central point and avoid undesired 
+states (i.e.: a cancelled order cannot be completed) 
 
 ### Live order dashboard
 
