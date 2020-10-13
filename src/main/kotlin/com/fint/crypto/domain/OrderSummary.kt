@@ -41,10 +41,13 @@ class OrderSummary(
         override fun convertToEntityAttribute(dbData: String) = dbData
             .split(",")
                 .asSequence()
-                .map { it.trim() }
-                .map { Hex.decode(it) }
-                .map { UUID.nameUUIDFromBytes(it) }
+                .map { rebuildUUID(it) }
+                .map { UUID.fromString(it) }
                 .toSet()
+
+        private fun rebuildUUID(it: String) =
+            it.trim().replace(Regex("(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)"), "$1-$2-$3-$4-$5")
+
     }
 
 }
