@@ -7,7 +7,6 @@ import java.math.BigDecimal
 import java.util.*
 
 data class OrderSummaryDto(
-    val id: String,
     val orderType: Order.Type,
     @JsonSerialize(using = BigDecimalSerializer::class) val pricePerCoin: BigDecimal,
     @JsonSerialize(using = BigDecimalSerializer::class)  val coinsTraded: BigDecimal,

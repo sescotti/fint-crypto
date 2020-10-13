@@ -9,7 +9,6 @@ class OrderSummaryMapper {
 
     fun toOrderSummaryDto(orderSummary: OrderSummary) = orderSummary.run {
         OrderSummaryDto(
-            id = id,
             pricePerCoin = pricePerCoin,
             coinsTraded = coinsTraded,
             orderIds = orderIds,
