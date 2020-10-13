@@ -24,3 +24,4 @@ crypto:
     excluded-paths:
       - /h2-console/**
       - /orders/**
+      - /currencies/**

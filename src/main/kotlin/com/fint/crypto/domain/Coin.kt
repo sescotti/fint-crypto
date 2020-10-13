@@ -1,5 +1,6 @@
 package com.fint.crypto.domain
 
+import com.fasterxml.jackson.annotation.JsonValue
 import com.fint.crypto.domain.Coin.Type.CRYPTO
 import com.fint.crypto.domain.Coin.Type.CoinTypeConverter
 import javax.persistence.AttributeConverter
@@ -18,6 +19,9 @@ data class Coin(
 
     enum class Type {
         CRYPTO, FIAT;
+
+        @JsonValue
+        override fun toString() = name.toLowerCase()
 
         class CoinTypeConverter : AttributeConverter<Type, String> {
             override fun convertToDatabaseColumn(type: Type) = type.toString()
