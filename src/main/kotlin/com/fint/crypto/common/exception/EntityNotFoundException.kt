@@ -1,4 +1,4 @@
-package com.fint.crypto
+package com.fint.crypto.common.exception
 
 import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.web.bind.annotation.ResponseStatus

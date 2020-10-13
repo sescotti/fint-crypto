@@ -1,6 +1,6 @@
 package com.fint.crypto.controller
 
-import com.fint.crypto.EntityNotFoundException
+import com.fint.crypto.common.exception.EntityNotFoundException
 import com.fint.crypto.command.CancelOrderCommand
 import com.fint.crypto.command.PlaceOrderCommand
 import com.fint.crypto.domain.Order

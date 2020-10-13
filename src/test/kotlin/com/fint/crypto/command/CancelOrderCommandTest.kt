@@ -1,6 +1,6 @@
 package com.fint.crypto.command
 
-import com.fint.crypto.EntityNotFoundException
+import com.fint.crypto.common.exception.EntityNotFoundException
 import com.fint.crypto.domain.Order
 import com.fint.crypto.domain.Order.Status.CANCELED
 import com.fint.crypto.dto.OrderCancellationDto
